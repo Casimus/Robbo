@@ -23,7 +23,8 @@ public class WorldMoveController : MonoBehaviour
 
             if (item.transform.position.x <= startPosition.x - 16)
             {
-                item.transform.position = startPosition + new Vector2(16, 0);
+                item.transform.position = startPosition 
+                    + new Vector2((objectToMove.Length - 1) * 16, 0);
             }
 
         }
