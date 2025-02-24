@@ -6,27 +6,38 @@ public class WorldMoveController : MonoBehaviour
 {
     [SerializeField] private GameObject[] objectToMove;
 
+    private GameObject currentStage;
+    private GameObject nextStage;
+
     private Vector2 startPosition;
 
     void Start()
     {
-        startPosition = objectToMove[0].transform.position;
+        startPosition = Vector3.zero;
+        currentStage = Instantiate(objectToMove[0], startPosition, Quaternion.identity, transform);
+        SetNextStage();
+
     }
 
     void Update()
     {
-        foreach (var item in objectToMove)
+
+        currentStage.transform.Translate(Vector3.left * GameManager.Instance.GetWorldSpeed() * Time.deltaTime);
+        nextStage.transform.Translate(Vector3.left * GameManager.Instance.GetWorldSpeed() * Time.deltaTime);
+
+        if (currentStage.transform.position.x <= startPosition.x - 16)
         {
-            //item.transform.position += Vector3.left * GameManager.Instance.GetWorldSpeed() * Time.deltaTime;
-
-            item.transform.Translate(Vector3.left * GameManager.Instance.GetWorldSpeed() * Time.deltaTime);
-
-            if (item.transform.position.x <= startPosition.x - 16)
-            {
-                item.transform.position = startPosition 
-                    + new Vector2((objectToMove.Length - 1) * 16, 0);
-            }
-
+            var temp = currentStage;
+            currentStage = nextStage;
+            SetNextStage();
+            Destroy(temp);
         }
+    }
+    private void SetNextStage()
+    {
+        int nextStageIndex = Random.Range(0, objectToMove.Length);
+        nextStage =
+            Instantiate(objectToMove[nextStageIndex], new Vector2(startPosition.x + 16, startPosition.y),
+        Quaternion.identity, transform);
     }
 }
