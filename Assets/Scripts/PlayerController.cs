@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsOnGround()
     {
-        float distance = 0.1f;
+        float distance = 2.7f;
         var hit = Physics2D.BoxCast(transform.position,
             GetComponent<BoxCollider2D>().bounds.size,
             0f,
