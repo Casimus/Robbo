@@ -7,11 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    private const string COIN_KEY = "Coins";
+
     [SerializeField] private float worldSpeed = 0.2f;
     [SerializeField] private Button resetButton;
     [SerializeField] private TextMeshProUGUI scoreText;
     
     private float score = 0;
+    private int coins = 0;
     bool isAlive = true;
 
     private void Awake()
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         resetButton.gameObject.SetActive(false);
         score = 0;
+        coins = PlayerPrefs.GetInt(COIN_KEY, 0);
         isAlive = true;
     }
 
@@ -41,6 +45,12 @@ public class GameManager : MonoBehaviour
             score += Time.deltaTime;
             scoreText.text = $"Score: {score:F0}";
         }
+    }
+
+    public void AddCoin()
+    {
+        coins++;
+        PlayerPrefs.SetInt(COIN_KEY, coins);
     }
 
     public void SetAlive(bool alive)

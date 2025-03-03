@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-
     void Update()
     {
         if (IsOnGround())

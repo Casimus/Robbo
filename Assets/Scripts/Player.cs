@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
         {
             GameOver();
         }
+        else if (collision.gameObject.tag == "Coin")
+        {
+            GameManager.Instance.AddCoin();
+            Destroy(collision.gameObject);
+        }
     }
 
     private void GameOver()
