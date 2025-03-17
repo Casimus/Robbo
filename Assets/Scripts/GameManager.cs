@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         resetButton.gameObject.SetActive(false);
         score = 0;
         coins = PlayerPrefs.GetInt(COIN_KEY, 0);
+        CoinsUpdate();
         isAlive = true;
     }
 
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         coins++;
         PlayerPrefs.SetInt(COIN_KEY, coins);
+        CoinsUpdate();
     }
 
     public void SetAlive(bool alive)

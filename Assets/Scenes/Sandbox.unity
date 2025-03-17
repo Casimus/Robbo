@@ -1299,6 +1299,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6969014915149762554, guid: 4bb3d5991851e7446b4757b46ec5f690, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 919429535}
+    - target: {fileID: 6969014915149762554, guid: 4bb3d5991851e7446b4757b46ec5f690, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 470744733}
