@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI coinText;
 
+    public Immortality immortality;
+    public Magnet magnet;
+
+
     private float score = 0;
     private int coins = 0;
     bool isAlive = true;
@@ -38,6 +42,8 @@ public class GameManager : MonoBehaviour
         coins = PlayerPrefs.GetInt(COIN_KEY, 0);
         CoinsUpdate();
         isAlive = true;
+        immortality.isActive = false;
+        magnet.isActive = false;
     }
 
     private void Update()
@@ -80,5 +86,43 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ImmortalityCollected()
+    {
+        if (immortality.isActive)
+        {
+            CancelInvoke(nameof(CancelImmortality));
+            CancelImmortality();
+        }
+
+
+        immortality.isActive = true;
+        worldSpeed += immortality.GetSpeedBoost();
+        Invoke(nameof(CancelImmortality), immortality.GetDuration());
+    }
+
+    private void CancelImmortality()
+    {
+        worldSpeed -= immortality.GetSpeedBoost();
+        immortality.isActive = false;
+    }
+
+    public void MagnetCollected()
+    {
+        if (magnet.isActive)
+        {
+            CancelInvoke(nameof(CancelMagnet));
+            CancelMagnet();
+        }
+
+        magnet.isActive = true;
+        Invoke(nameof(CancelMagnet), magnet.GetDuration());
+
+    }
+
+    private void CancelMagnet()
+    {
+        magnet.isActive = false;
     }
 }

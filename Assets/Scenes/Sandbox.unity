@@ -1307,6 +1307,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 470744733}
     - target: {fileID: 6969014915149762554, guid: 4bb3d5991851e7446b4757b46ec5f690, type: 3}
+      propertyPath: immortality
+      value: 
+      objectReference: {fileID: 11400000, guid: fad4f987128c8074ea9b5bacf7fcff9d, type: 2}
+    - target: {fileID: 6969014915149762554, guid: 4bb3d5991851e7446b4757b46ec5f690, type: 3}
       propertyPath: resetButton
       value: 
       objectReference: {fileID: 497878608}

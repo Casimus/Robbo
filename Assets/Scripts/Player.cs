@@ -6,13 +6,24 @@ public class Player : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle" &&
+            !GameManager.Instance.immortality.isActive)
         {
             GameOver();
         }
         else if (collision.gameObject.tag == "Coin")
         {
             GameManager.Instance.AddCoin();
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Immortal")
+        {
+            GameManager.Instance.ImmortalityCollected();
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Magnet")
+        {
+            GameManager.Instance.MagnetCollected();
             Destroy(collision.gameObject);
         }
     }

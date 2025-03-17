@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - Coin
+  - Immortal
+  - Magnet
   layers:
   - Default
   - TransparentFX
